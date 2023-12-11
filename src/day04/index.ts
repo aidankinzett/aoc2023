@@ -17,14 +17,14 @@ const part1 = (rawInput: string) => {
     const [_, numbers] = line.split(": ");
     const [winningNumbers, ticketNumbers] = numbers.split(" | ");
 
+    // find numbers and map to integers
     const winningNumbersList = [...winningNumbers.matchAll(/\d+/g)].map(v => parseInt(v[0]));
-
-
     const ticketNumbersList = [...ticketNumbers.matchAll(/\d+/g)].map(v => parseInt(v[0]));
 
-    // how many ticket numbers are winning numbers
+    // how many ticket numbers are also in the winning numbers
     const winningNumbersCount = ticketNumbersList.filter((n) => winningNumbersList.includes(n)).length;
 
+    // add points to sum
     sum += points(winningNumbersCount);
   });
 
