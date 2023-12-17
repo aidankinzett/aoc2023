@@ -31,26 +31,24 @@ type Hand = {
 };
 
 const detectType = (h: Hand, part2 = false) => {
-  let cards = h.cards;
+  let cards = [...h.cards];
 
   // replace any "J" cards with the most common card other than "J"
     if (part2) {
-      const mostCommonCard = [...cards]
+      const mostCommonCard = [...cards.filter((card) => card !== "J")]
     .sort(
-      (a, b) => {
-        if (a === "J") return -1;
-        if (b === "J") return -1;
-
-        return cards.filter((v) => v === a).length -
-        cards.filter((v) => v === b).length;
-      },
+      (a, b) => cards.filter((v) => v === a).length -
+      cards.filter((v) => v === b).length,
     )
     .pop();
 
     console.log(mostCommonCard)
-console.log(cards)
-      cards = cards.map((card) => (card === "J" ? mostCommonCard : card)) as Cards;
-      h.cardsWithoutJ = cards as CardsWithoutJ;
+    console.log(cards)
+      let cardsWithoutJ = cards.map((card) => (card === "J" ? mostCommonCard : card)) as Cards;
+      console.log(cardsWithoutJ)
+
+      h.cardsWithoutJ = cardsWithoutJ as CardsWithoutJ;
+      cards = cardsWithoutJ;
     }
 
   // if ever card is the same
