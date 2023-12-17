@@ -14,7 +14,7 @@ const part1 = (rawInput: string) => {
   const instructions = input[0];
   const nodes = input.slice(2);
 
-  const parsedNodes = nodes.map((node) => {
+  const parsedNodes: Node[] = nodes.map((node) => {
     const name = node.split(" = ")[0];
     const left = node.split(" = ")[1].split(", ")[0].replace("(", "");
     const right = node.split(" = ")[1].split(", ")[1].replace(")", "");
